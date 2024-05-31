@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "792788287172",
+    "project_id": "blinkit-b7085",
+    "storage_bucket": "blinkit-b7085.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792788287172:android:c8974572979d0518dad391",
+        "android_client_info": {
+          "package_name": "com.example.blinkituserapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4srtfehXqyEvByxofBhGE4ESlMIqUG-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
