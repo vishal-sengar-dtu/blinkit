@@ -1,14 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OTPFragment">
+    android:background="@color/white"
+    tools:context=".auth.OTPFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@color/cream"
+        android:minHeight="?attr/actionBarSize"
+        app:title="OTP verification"
+        app:titleTextColor="@color/black"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/baseline_arrow_back_30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/ll_otp_verification_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/materialToolbar">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/otp_verification_text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tv_mobile_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            tools:text="+91 9654818697"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_otp_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="6"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_otp_verification_text">
+
+        <EditText
+            android:id="@+id/et_otp1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:layout_marginHorizontal="5dp"
+            android:textAlignment="center"
+            android:paddingVertical="10dp"
+            android:layout_marginEnd="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/otp_edit_text_background"/>
+        <EditText
+            android:id="@+id/et_otp2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:textAlignment="center"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/otp_edit_text_background"/>
+        <EditText
+            android:id="@+id/et_otp3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:textAlignment="center"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/otp_edit_text_background"/>
+        <EditText
+            android:id="@+id/et_otp4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:textAlignment="center"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/otp_edit_text_background"/>
+        <EditText
+            android:id="@+id/et_otp5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:textAlignment="center"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/otp_edit_text_background"/>
+        <EditText
+            android:id="@+id/et_otp6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:textAlignment="center"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/otp_edit_text_background"/>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/login_text"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:letterSpacing="0.1"
+        android:paddingHorizontal="100dp"
+        android:background="@drawable/round_button_blue"
+        android:textAllCaps="false"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_otp_edit_text"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

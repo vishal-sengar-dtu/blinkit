@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SigninFragment">
+    tools:context=".auth.SigninFragment">
 
     <ScrollView
+        android:id="@+id/sv_signin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -45,7 +46,7 @@
                     android:layout_height="60dp"
                     android:src="@drawable/blinkit_logo"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/round_corner"
+                    android:background="@drawable/border_radius_image"
                     android:clipToOutline="true"/>
 
                 <TextView
@@ -67,50 +68,80 @@
                     android:textColor="@color/black" />
 
                 <LinearLayout
-                    android:id="@+id/custom_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="24dp"
-                    android:background="@drawable/round_corner_border"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="16dp">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:letterSpacing="0.1"
-                        android:text="@string/country_code"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <EditText
+                    <LinearLayout
+                        android:id="@+id/custom_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="@string/enter_mobile_number_text"
-                        android:inputType="phone"
-                        android:letterSpacing="0.1"
-                        android:maxLength="10"
-                        android:paddingStart="12dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/blinkit_grey"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        tools:ignore="RtlSymmetry" />
+                        android:background="@drawable/round_border_grey"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:letterSpacing="0.1"
+                            android:text="@string/country_code"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/et_mobile_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="@string/enter_mobile_number_text"
+                            android:inputType="phone"
+                            android:letterSpacing="0.1"
+                            android:maxLength="10"
+                            android:paddingStart="12dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/blinkit_grey"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:ignore="Autofill" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/baseline_cancel_18"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="15dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_error_msg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        android:text="@string/invalid_number_error_msg"
+                        android:textSize="10sp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="3dp"
+                        android:textColor="@color/error_red"
+                        android:visibility="gone"
+                        tools:visibility="visible"/>
+
 
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_continue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/round_corner_button_fill"
+                    android:background="@drawable/round_button_grey"
                     android:padding="10dp"
                     android:textAllCaps="false"
                     android:text="@string/continue_btn_text"
@@ -121,31 +152,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/terms_agreement_text"
+                    android:textSize="9sp"
+                    android:paddingVertical="5dp"
                     android:layout_marginTop="24dp"
-                    android:text="@string/terms_agreement_text"
-                    android:textSize="10sp"
-                    android:textColor="@color/blinkit_grey"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@color/light_grey"
-                android:gravity="center"
-                android:paddingVertical="4dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll_signin_form">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/terms_agreement_text"
-                    android:textSize="10sp"
+                    android:textAlignment="center"
+                    android:background="@color/light_grey"
                     android:textColor="@color/blinkit_grey"/>
 
             </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.blinkituserapp
+package com.example.blinkituserapp.auth
 
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.example.blinkituserapp.R
 import com.example.blinkituserapp.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
@@ -21,8 +22,8 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSplashBinding.inflate(inflater, container, false)
-        setStatusBarColor()
 
+        setStatusBarColor()
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_signinFragment)
         }, 2000)

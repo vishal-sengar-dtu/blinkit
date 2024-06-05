@@ -3,8 +3,10 @@
     android:shape="rectangle">
 
     <!-- Define the corner radii for rounded corners -->
-    <corners android:radius="8dp" />
+    <corners android:radius="10dp" />
 
-    <!-- Optional: Define a solid color or make it transparent -->
-    <solid android:color="@color/blinkit_grey" />
+    <!-- Define the border (stroke) -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/grey" />
 </shape>

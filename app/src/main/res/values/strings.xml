@@ -53,4 +53,8 @@
     <string name="enter_mobile_number_text">Enter mobile number</string>
     <string name="country_code">+91</string>
     <string name="continue_btn_text">Continue</string>
+    <string name="invalid_number_error_msg">Enter a valid number</string>
+    <string name="otp_verification_text">We\'ve sent a verification code to</string>
+    <string name="login_text">Login</string>
+    <string name="loading_text">Loading...</string>
 </resources>
