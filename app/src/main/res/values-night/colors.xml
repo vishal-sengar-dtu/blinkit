@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FF000000</color>
+    <color name="black">#FFFFFFFF</color>
+
+    //splash
+    <color name="splash_yellow">#121212</color>
+    <color name="splash_black">#DCC648</color>
+    <color name="splash_underline">#E4AF12</color>
+    <color name="splash_green">#2EA432</color>
+</resources>
