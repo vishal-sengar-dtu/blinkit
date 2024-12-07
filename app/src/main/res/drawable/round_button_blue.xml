@@ -6,5 +6,5 @@
     <corners android:radius="10dp" />
 
     <!-- Optional: Define a solid color or make it transparent -->
-    <solid android:color="@color/login_btn_grey" />
+    <solid android:color="@color/otp_blue" />
 </shape>

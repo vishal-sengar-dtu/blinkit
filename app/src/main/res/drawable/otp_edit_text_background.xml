@@ -5,6 +5,8 @@
     <!-- Define the corner radii for rounded corners -->
     <corners android:radius="10dp" />
 
-    <!-- Optional: Define a solid color or make it transparent -->
-    <solid android:color="@color/login_btn_grey" />
+    <!-- Define the border (stroke) -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/otp_grey_border" />
 </shape>
