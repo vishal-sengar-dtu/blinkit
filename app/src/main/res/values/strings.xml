@@ -11,8 +11,14 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="blink">Blink</string>
+    <string name="blink">blink</string>
     <string name="it">it</string>
     <string name="india_s_last_minute_app">India\'s Last Minute App</string>
     <string name="a_zomato_company">A ZOMATO COMPANY</string>
+    <string name="log_in_or_sign_up">Log in or Sign up</string>
+    <string name="_91">+91</string>
+    <string name="enter_mobile_number">Enter mobile number</string>
+    <string name="continue_text">Continue</string>
+    <string name="enter_a_valid_number">Enter a valid number</string>
+    <string name="terms_agreement_text"><![CDATA[By Continuing, you agree to our Terms of Service & Privacy Policy.]]></string>
 </resources>
