@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/login_light"
-    tools:context=".LoginFragment">
+    tools:context=".auth.LoginFragment">
 
     <LinearLayout
         android:id="@+id/ll_signin_form"
@@ -52,29 +52,30 @@
             android:layout_marginTop="24dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/custom_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_border"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="16dp">
 
                 <TextView
+                    android:id="@+id/country_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:letterSpacing="0.1"
                     android:text="@string/_91"
+                    app:layout_constraintStart_toStartOf="@id/custom_edit_text"
+                    app:layout_constraintTop_toTopOf="@id/custom_edit_text"
+                    app:layout_constraintBottom_toBottomOf="@id/custom_edit_text"
                     android:textColor="@color/login_dark"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/et_mobile_number"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="@string/enter_mobile_number"
@@ -86,16 +87,23 @@
                     android:textColorHint="@color/login_text_grey"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    tools:ignore="Autofill" />
+                    tools:ignore="Autofill"
+                    app:layout_constraintStart_toEndOf="@id/country_code"
+                    app:layout_constraintTop_toTopOf="@id/custom_edit_text"
+                    app:layout_constraintBottom_toBottomOf="@id/custom_edit_text" />
 
                 <ImageView
+                    android:id="@+id/cross_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/baseline_cancel_18" />
+                    app:layout_constraintEnd_toEndOf="@id/custom_edit_text"
+                    app:layout_constraintTop_toTopOf="@id/custom_edit_text"
+                    app:layout_constraintBottom_toBottomOf="@id/custom_edit_text"
+                    android:visibility="gone"
+                    android:src="@drawable/baseline_cancel_16"
+                    tools:visibility="visible"/>
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tv_error_msg"

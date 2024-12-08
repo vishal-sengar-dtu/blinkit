@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.core.content.ContextCompat
 
 object Utility {
@@ -20,5 +22,11 @@ object Utility {
         activity.window?.apply {
             navigationBarColor = ContextCompat.getColor(context, color)
         }
+    }
+
+    fun showKeyboard(editText: EditText) {
+        editText.requestFocus() // Ensure the EditText has focus
+        val imm = editText.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
     }
 }

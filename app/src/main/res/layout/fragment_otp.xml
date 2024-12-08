@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/otp_light"
-    tools:context=".OtpFragment">
+    tools:context=".auth.OtpFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
@@ -68,9 +68,8 @@
 
         <EditText
             android:id="@+id/et_otp1"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
             android:layout_marginEnd="5dp"
             android:layout_weight="1"
             android:background="@drawable/otp_edit_text_background"
@@ -79,13 +78,13 @@
             android:maxLength="1"
             android:paddingVertical="10dp"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/otp_dark"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/et_otp2"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
@@ -101,7 +100,7 @@
 
         <EditText
             android:id="@+id/et_otp3"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
@@ -113,11 +112,12 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:imeOptions="actionNext"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/et_otp4"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
@@ -129,11 +129,12 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:imeOptions="actionNext"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/et_otp5"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
@@ -145,13 +146,14 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:imeOptions="actionNext"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/et_otp6"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
             android:background="@drawable/otp_edit_text_background"
             android:cursorVisible="false"
@@ -161,6 +163,7 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:imeOptions="actionNext"
             android:textStyle="bold" />
 
     </LinearLayout>

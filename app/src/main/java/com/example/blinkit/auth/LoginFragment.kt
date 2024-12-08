@@ -1,4 +1,4 @@
-package com.example.blinkit
+package com.example.blinkit.auth
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,8 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.blinkit.R
+import com.example.blinkit.Utility
 import com.example.blinkit.databinding.FragmentLoginBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
     private lateinit var binding : FragmentLoginBinding
@@ -21,11 +26,23 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(layoutInflater)
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(500) // Small delay to ensure view is fully rendered
+            Utility.showKeyboard(binding.etMobileNumber)
+        }
+
         Utility.setStatusBarColor(requireActivity(), requireContext(), R.color.login_light)
         setMobileNumberListener()
         onContinueButtonClick()
+        onCrossClick()
 
         return binding.root
+    }
+
+    private fun onCrossClick() {
+        binding.crossBtn.setOnClickListener {
+            binding.etMobileNumber.setText("")
+        }
     }
 
     private fun onContinueButtonClick() {
@@ -60,14 +77,22 @@ class LoginFragment : Fragment() {
                 if(s.toString().length == maxLength) {
                     binding.btnContinue.setBackgroundDrawable(
                         ContextCompat.getDrawable(requireContext(),
-                        R.drawable.round_button_green
+                            R.drawable.round_button_green
                     ))
                 } else {
                     binding.btnContinue.setBackgroundDrawable(
                         ContextCompat.getDrawable(requireContext(),
-                        R.drawable.round_button_grey
+                            R.drawable.round_button_grey
                     ))
                 }
+
+
+                if(s.toString().isNotEmpty()) {
+                    binding.crossBtn.visibility = View.VISIBLE
+                } else {
+                    binding.crossBtn.visibility = View.GONE
+                }
+
             }
 
             override fun afterTextChanged(s: Editable?) {
