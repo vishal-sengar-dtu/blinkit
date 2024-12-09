@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,169 +21,223 @@
         app:title="OTP Verification"
         app:titleTextColor="@color/otp_toolbar_text" />
 
-    <LinearLayout
-        android:id="@+id/ll_otp_verification_text"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_otp_verification_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_marginTop="25dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/materialToolbar" >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/materialToolbar">
 
         <TextView
+            android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/we_ve_sent_a_verification_code_to"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tv_mobile_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            tools:text="+91 9654818697"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            tools:text="+91 9654818697"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_otp_edit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="120dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/materialToolbar">
-
-        <EditText
-            android:id="@+id/et_otp1"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/ll_otp_edit_text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_edit_text_background"
-            android:cursorVisible="false"
-            android:inputType="number"
-            android:maxLength="1"
-            android:paddingVertical="10dp"
-            android:textAlignment="center"
-            android:textColor="@color/otp_dark"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_mobile_number">
 
-        <EditText
-            android:id="@+id/et_otp2"
-            android:layout_width="0dp"
+            <EditText
+                android:id="@+id/et_otp1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/otp_edit_text_background"
+                android:cursorVisible="false"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/otp_dark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_otp2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/otp_edit_text_background"
+                android:cursorVisible="false"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_otp3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/otp_edit_text_background"
+                android:cursorVisible="false"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_otp4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/otp_edit_text_background"
+                android:cursorVisible="false"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_otp5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/otp_edit_text_background"
+                android:cursorVisible="false"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_otp6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/otp_edit_text_background"
+                android:cursorVisible="false"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_error_msg"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_edit_text_background"
-            android:cursorVisible="false"
-            android:inputType="number"
-            android:maxLength="1"
-            android:paddingVertical="10dp"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:text="@string/enter_a_valid_otp"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="@color/login_error_red"
+            android:textSize="11sp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="@id/ll_otp_edit_text"
+            app:layout_constraintEnd_toEndOf="@id/ll_otp_edit_text"
+            app:layout_constraintTop_toBottomOf="@id/ll_otp_edit_text"/>
 
-        <EditText
-            android:id="@+id/et_otp3"
-            android:layout_width="0dp"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loader_animation_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:lottie_autoPlay="false"
+            app:lottie_fileName="loader.json"
+            app:lottie_loop="true"
+            app:lottie_speed="1"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_otp_edit_text"
+            app:layout_constraintBottom_toTopOf="@id/btn_login"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_edit_text_background"
-            android:cursorVisible="false"
-            android:inputType="number"
-            android:maxLength="1"
-            android:paddingVertical="10dp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:imeOptions="actionNext"
-            android:textStyle="bold" />
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/round_button_blue"
+            android:letterSpacing="0.05"
+            android:paddingHorizontal="100dp"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="@color/otp_btn_text"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_otp_edit_text" />
 
-        <EditText
-            android:id="@+id/et_otp4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_edit_text_background"
-            android:cursorVisible="false"
-            android:inputType="number"
-            android:maxLength="1"
-            android:paddingVertical="10dp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:imeOptions="actionNext"
-            android:textStyle="bold" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/et_otp5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_edit_text_background"
-            android:cursorVisible="false"
-            android:inputType="number"
-            android:maxLength="1"
-            android:paddingVertical="10dp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:imeOptions="actionNext"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/et_otp6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_edit_text_background"
-            android:cursorVisible="false"
-            android:inputType="number"
-            android:maxLength="1"
-            android:paddingVertical="10dp"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:imeOptions="actionNext"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login"
+    <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginBottom="308dp"
-        android:background="@drawable/round_button_blue"
-        android:letterSpacing="0.05"
-        android:paddingHorizontal="100dp"
-        android:text="@string/login"
-        android:textAllCaps="false"
-        android:textColor="@color/otp_btn_text"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/dialog_box"
+        layout="@layout/pop_up_dialog"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="100dp"
-        app:layout_constraintTop_toBottomOf="@id/ll_otp_edit_text" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <View
+        android:id="@+id/non_clickable_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/semi_transparent_black"
+        android:visibility="gone"
+        android:clickable="false"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

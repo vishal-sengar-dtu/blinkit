@@ -20,7 +20,10 @@
     <string name="enter_mobile_number">Enter mobile number</string>
     <string name="continue_text">Continue</string>
     <string name="enter_a_valid_number">Enter a valid number</string>
+    <string name="enter_a_valid_otp">Enter a valid OTP</string>
+    <string name="incorrect_otp">Incorrect OTP, Please Retry</string>
     <string name="terms_agreement_text"><![CDATA[By Continuing, you agree to our Terms of Service & Privacy Policy.]]></string>
     <string name="we_ve_sent_a_verification_code_to">We\'ve sent a verification code to</string>
     <string name="login">Login</string>
+    <string name="login_greeting">Welcome</string>
 </resources>

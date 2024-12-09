@@ -2,6 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent_black">#80000000</color>
 
     //splash screen
     <color name="splash_yellow">#F8CC44</color>
@@ -27,5 +29,10 @@
     <color name="otp_grey_border">#EEECF6</color>
     <color name="otp_blue">#0E7CD5</color>
     <color name="otp_btn_text">#FFFFFF</color>
+
+    //popup dialog
+    <color name="popup_light">#FFFFFF</color>
+    <color name="popup_dark">#181111</color>
+    <color name="popup_text">#94A5B3</color>
 
 </resources>
