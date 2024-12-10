@@ -10,16 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.blinkit.Firebase
 import com.example.blinkit.R
 import com.example.blinkit.Utility
 import com.example.blinkit.databinding.FragmentOtpBinding
+import com.example.blinkit.model.User
 import com.example.blinkit.viewmodel.AuthViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 class OtpFragment : Fragment() {
     private val viewModel : AuthViewModel by viewModels()
@@ -59,25 +59,31 @@ class OtpFragment : Fragment() {
                 binding.loaderAnimationView.playAnimation()
 
                 otpFields.forEach { it.text?.clear(); it.clearFocus() }
+                otpFields[0].requestFocus()
                 verifyOtp(otp)
             }
         }
     }
 
     private fun verifyOtp(otp: String) {
-        viewModel.signInWithPhoneAuthCredential(otp)
+        val user = User(Firebase.getCurrentUserId(), phoneNumber, null)
+        viewModel.signInWithPhoneAuthCredential(otp, user)
         observeIsLoginSuccessful()
     }
 
     private fun observeIsLoginSuccessful() {
-        viewModel.isLoginSuccessful.observe(requireActivity()) {
-            binding.loaderAnimationView.visibility = View.GONE
-            it?.apply {
-                if(it) {
-                    showLoginAnimationDialog()
-                } else {
-                    binding.tvErrorMsg.text = requireContext().getString(R.string.incorrect_otp)
-                    binding.tvErrorMsg.visibility = View.VISIBLE
+        lifecycleScope.launch {
+            delay(1500)
+            viewModel.isLoginSuccessful.collect {
+                binding.loaderAnimationView.visibility = View.GONE
+                binding.loaderAnimationView.playAnimation()
+                it?.apply {
+                    if(it) {
+                        showLoginAnimationDialog()
+                    } else {
+                        binding.tvErrorMsg.text = requireContext().getString(R.string.incorrect_otp)
+                        binding.tvErrorMsg.visibility = View.VISIBLE
+                    }
                 }
             }
         }
