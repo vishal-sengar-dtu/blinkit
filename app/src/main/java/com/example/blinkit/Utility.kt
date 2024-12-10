@@ -42,4 +42,25 @@ object Utility {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
+    fun saveLoginSession(context : Context, status : Boolean) {
+        val sharedPref = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putBoolean("isLoggedIn", status)
+            apply()
+        }
+    }
+
+    fun isUserLoggedIn(context: Context): Boolean {
+        val sharedPref = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("isLoggedIn", false)
+    }
+
+    private fun clearLoginSession(context: Context) {
+        val sharedPref = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            clear()
+            apply()
+        }
+    }
+
 }

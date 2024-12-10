@@ -1,6 +1,7 @@
 package com.example.blinkit.viewmodel
 
 import android.app.Activity
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -60,6 +61,7 @@ class AuthViewModel : ViewModel() {
                         .child("Users")
                         .child(user.uId!!)
                         .setValue(user)
+
                 } else {
                     _isLoginSuccessful.value = false
                 }

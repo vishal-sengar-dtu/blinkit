@@ -1,6 +1,7 @@
 package com.example.blinkit.auth
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.blinkit.Firebase
 import com.example.blinkit.R
 import com.example.blinkit.Utility
+import com.example.blinkit.activity.HomeActivity
 import com.example.blinkit.databinding.FragmentOtpBinding
 import com.example.blinkit.model.User
 import com.example.blinkit.viewmodel.AuthViewModel
@@ -73,14 +75,20 @@ class OtpFragment : Fragment() {
 
     private fun observeIsLoginSuccessful() {
         lifecycleScope.launch {
-            delay(1500)
+            delay(1800)
             viewModel.isLoginSuccessful.collect {
                 binding.loaderAnimationView.visibility = View.GONE
                 binding.loaderAnimationView.playAnimation()
                 it?.apply {
                     if(it) {
                         showLoginAnimationDialog()
+                        Utility.saveLoginSession(requireContext(), true)
                         Utility.hideKeyboard(binding.etOtp1)
+                        delay(2100)
+                        val homeIntent = Intent(requireContext(), HomeActivity::class.java)
+                        startActivity(homeIntent)
+                        requireActivity().finish()
+
                     } else {
                         binding.tvErrorMsg.text = requireContext().getString(R.string.incorrect_otp)
                         binding.tvErrorMsg.visibility = View.VISIBLE
@@ -117,7 +125,7 @@ class OtpFragment : Fragment() {
 
     private fun handleBackButton() {
         binding.materialToolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+            findNavController().popBackStack()
         }
     }
 
