@@ -10,7 +10,6 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.util.concurrent.TimeUnit
 
@@ -49,6 +48,7 @@ class AuthViewModel : ViewModel() {
     }
 
     fun signInWithPhoneAuthCredential(otp: String, user: User) {
+        // verificationId can be null if we enter OTP before even receiving it.
         val credential : PhoneAuthCredential = PhoneAuthProvider.getCredential(_verificationId!!, otp)
 
         Firebase.getAuthInstance().signInWithCredential(credential)

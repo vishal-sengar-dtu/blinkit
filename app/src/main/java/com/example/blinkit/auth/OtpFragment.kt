@@ -80,6 +80,7 @@ class OtpFragment : Fragment() {
                 it?.apply {
                     if(it) {
                         showLoginAnimationDialog()
+                        Utility.hideKeyboard(binding.etOtp1)
                     } else {
                         binding.tvErrorMsg.text = requireContext().getString(R.string.incorrect_otp)
                         binding.tvErrorMsg.visibility = View.VISIBLE
