@@ -34,4 +34,12 @@
     <color name="popup_dark">#FFFFFF</color>
     <color name="popup_text">#FFFFFF</color>
 
+    //home screen
+    <color name="home_dark">#FFFFFF</color>
+    <color name="home_light">#211F1F</color>
+    <color name="home_yellow">#050505</color>
+    <color name="home_border_grey">#211F1F</color>
+    <color name="home_text_grey">#FFFFFF</color>
+    <color name="home_text_white">#FFFFFF</color>
+
 </resources>

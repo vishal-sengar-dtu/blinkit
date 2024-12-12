@@ -26,4 +26,6 @@
     <string name="we_ve_sent_a_verification_code_to">We\'ve sent a verification code to</string>
     <string name="login">Login</string>
     <string name="login_greeting">Welcome</string>
+    <string name="search">Search</string>
+    <string name="search_text">Search</string>
 </resources>

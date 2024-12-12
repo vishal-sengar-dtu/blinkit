@@ -13,17 +13,19 @@ import androidx.core.content.ContextCompat.getSystemService
 
 object Utility {
 
-    fun setStatusBarColor(activity : Activity, context : Context, color : Int) {
-        activity.window?.apply {
-            val statusBarColors = ContextCompat.getColor(context, color)
-            statusBarColor = statusBarColors
+    fun setStatusBarColor(activity : Activity, context : Context?, color : Int) {
+        if(context != null) {
+            activity.window?.apply {
+                val statusBarColors = ContextCompat.getColor(context, color)
+                statusBarColor = statusBarColors
 
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                }
             }
-        }
-        activity.window?.apply {
-            navigationBarColor = ContextCompat.getColor(context, color)
+            activity.window?.apply {
+                navigationBarColor = ContextCompat.getColor(context, color)
+            }
         }
     }
 
@@ -38,8 +40,10 @@ object Utility {
         imm.hideSoftInputFromWindow(editText.windowToken, 0)
     }
 
-    fun showToast(context : Context, message : String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    fun showToast(context : Context?, message : String) {
+        if(context != null) {
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun saveLoginSession(context : Context, status : Boolean) {
