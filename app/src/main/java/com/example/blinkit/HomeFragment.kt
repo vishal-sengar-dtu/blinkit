@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import com.example.blinkit.adapter.AdapterCategory
 import com.example.blinkit.databinding.FragmentHomeBinding
 import com.example.blinkit.databinding.FragmentSplashBinding
 
@@ -24,8 +25,16 @@ class HomeFragment : Fragment() {
 
         onSearchTextListener()
         onSearchCrossClick()
+        setCategoriesRecyclerView()
 
         return binding.root
+    }
+
+    private fun setCategoriesRecyclerView() {
+        binding.rvGrocery.adapter = AdapterCategory(Constants.groceryCategoryList)
+        binding.rvSnacks.adapter = AdapterCategory(Constants.snacksCategoryList)
+        binding.rvBeauty.adapter = AdapterCategory(Constants.beautyCategoryList)
+        binding.rvHousehold.adapter = AdapterCategory(Constants.householdCategoryList)
     }
 
     private fun onSearchCrossClick() {

@@ -40,7 +40,8 @@
     <color name="home_dark">#050000</color>
     <color name="home_yellow">#F8CC44</color>
     <color name="home_border_grey">#EEECF6</color>
+    <color name="home_text">#5A5A5D</color>
     <color name="home_text_grey">#94A5B3</color>
-    <color name="home_text_white">#FFFFFF</color>
+    <color name="home_item_bg">#E5F3F3</color>
 
 </resources>

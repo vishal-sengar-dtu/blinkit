@@ -36,10 +36,10 @@
 
     //home screen
     <color name="home_dark">#FFFFFF</color>
-    <color name="home_light">#211F1F</color>
-    <color name="home_yellow">#050505</color>
+    <color name="home_light">#2A2828</color>
+    <color name="home_yellow">#000000</color>
     <color name="home_border_grey">#211F1F</color>
-    <color name="home_text_grey">#FFFFFF</color>
-    <color name="home_text_white">#FFFFFF</color>
+    <color name="home_text">#E0DFDF</color>
+    <color name="home_item_bg">#93BFBF</color>
 
 </resources>

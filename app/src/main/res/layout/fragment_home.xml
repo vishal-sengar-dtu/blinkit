@@ -10,7 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="@dimen/_200sdp"
         android:background="@drawable/round_collapsable_banner">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -73,6 +73,7 @@
                         android:inputType="text"
                         android:maxLines="1"
                         android:paddingStart="12dp"
+                        android:fontFamily="@font/montserrat_medium"
                         android:textColor="@color/black"
                         android:textColorHint="@color/home_text_grey"
                         android:textSize="14sp"
@@ -107,6 +108,139 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingTop="@dimen/_8sdp">
+
+            <LinearLayout
+                android:id="@+id/ll_best_seller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginEnd="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:text="@string/best_seller"
+                    android:textColor="@color/home_text"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_best_seller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_best_seller"/>
+
+            <LinearLayout
+                android:id="@+id/ll_categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_3sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_best_seller">
+
+                <TextView
+                    android:id="@+id/tv_grocery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/grocery_amp_kitchen"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:textColor="@color/home_text"
+                    android:textSize="@dimen/_12ssp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_grocery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:spanCount="4"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+                <TextView
+                    android:id="@+id/tv_snacks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/snacks_amp_drinks"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:textColor="@color/home_text"
+                    android:textSize="@dimen/_12ssp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_snacks"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:spanCount="4"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+                <TextView
+                    android:id="@+id/tv_beauty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:text="@string/beauty_amp_personal_care"
+                    android:textColor="@color/home_text"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_beauty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:spanCount="4"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+                <TextView
+                    android:id="@+id/tv_household"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/household_essentials"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:textColor="@color/home_text"
+                    android:textSize="@dimen/_12ssp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_household"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:spanCount="4"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
