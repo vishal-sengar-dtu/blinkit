@@ -68,7 +68,7 @@ class OtpFragment : Fragment() {
     }
 
     private fun verifyOtp(otp: String) {
-        val user = User(Firebase.getCurrentUserId(), phoneNumber, null)
+        val user = User(null, phoneNumber, null)
         viewModel.signInWithPhoneAuthCredential(otp, user)
         observeIsLoginSuccessful()
     }

@@ -54,6 +54,7 @@ class AuthViewModel : ViewModel() {
 
         Firebase.getAuthInstance().signInWithCredential(credential)
             .addOnCompleteListener { task ->
+                user.uId = Firebase.getCurrentUserId()
                 if (task.isSuccessful) {
                     _isLoginSuccessful.value = true
                     Firebase.getDatabaseInstance()
