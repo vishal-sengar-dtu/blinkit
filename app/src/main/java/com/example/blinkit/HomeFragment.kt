@@ -1,6 +1,5 @@
 package com.example.blinkit
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,17 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.blinkit.adapter.AdapterCategory
 import com.example.blinkit.adapter.AdapterSkeleton
 import com.example.blinkit.databinding.FragmentHomeBinding
-import com.example.blinkit.databinding.FragmentSplashBinding
 import com.example.blinkit.model.Category
 import com.example.blinkit.viewmodel.HomeViewModel
-import kotlinx.coroutines.launch
-import java.util.ArrayList
+
 
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
@@ -44,10 +39,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun setCategoriesRecyclerView() {
-        viewModel.loadCategoryImageUrlsFromStorage()
-
         groceryAdapter = AdapterCategory(Constants.groceryCategoryList)
         snacksAdapter = AdapterCategory(Constants.snacksCategoryList)
         beautyAdapter = AdapterCategory(Constants.beautyCategoryList)
@@ -60,18 +52,7 @@ class HomeFragment : Fragment() {
             rvHousehold.adapter = householdAdapter
         }
 
-        lifecycleScope.launch {
-            viewModel.isImageUrlLoaded.collect {
-                if(it) {
-                    hideSkeletonLoader()
-
-                    groceryAdapter.notifyDataSetChanged()
-                    snacksAdapter.notifyDataSetChanged()
-                    beautyAdapter.notifyDataSetChanged()
-                    householdAdapter.notifyDataSetChanged()
-                }
-            }
-        }
+        hideSkeletonLoader()
 
     }
 

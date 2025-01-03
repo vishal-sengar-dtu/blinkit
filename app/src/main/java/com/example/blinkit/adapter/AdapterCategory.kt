@@ -8,7 +8,7 @@ import com.example.blinkit.databinding.ItemViewProductCategoryBinding
 import com.example.blinkit.model.Category
 
 class AdapterCategory(
-    private val categoryList : List<Category>
+    private val categoryList : Array<Category>
 ) : RecyclerView.Adapter<AdapterCategory.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(
@@ -17,7 +17,7 @@ class AdapterCategory(
         fun bind(position: Int) {
             this.binding.apply {
                 Glide.with(this.imgCategory)
-                    .load(categoryList[position].imageUrl)
+                    .load(categoryList[position].imageUri)
                     .override(100, 100)
                     .into(this.imgCategory)
                 tvTitle.text = categoryList[position].title

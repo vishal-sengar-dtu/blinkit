@@ -44,7 +44,7 @@
 
     //toolbar gradient
     <color name="toolbar_yellow">#000000</color>
-    <color name="toolbar_light">#000000</color>
+    <color name="toolbar_light">#454141</color>
 
     //skeleton loader
     <color name="skeleton_grey">#E0E0E0</color>
