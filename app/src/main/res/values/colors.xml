@@ -44,4 +44,11 @@
     <color name="home_text_grey">#94A5B3</color>
     <color name="home_item_bg">#E5F3F3</color>
 
+    //toolbar gradient
+    <color name="toolbar_yellow">#F8CC44</color>
+    <color name="toolbar_light">#FBF2A0</color>
+
+    //skeleton loader
+    <color name="skeleton_grey">#E0E0E0</color>
+
 </resources>

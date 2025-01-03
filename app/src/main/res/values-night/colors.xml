@@ -42,4 +42,11 @@
     <color name="home_text">#E0DFDF</color>
     <color name="home_item_bg">#93BFBF</color>
 
+    //toolbar gradient
+    <color name="toolbar_yellow">#000000</color>
+    <color name="toolbar_light">#000000</color>
+
+    //skeleton loader
+    <color name="skeleton_grey">#E0E0E0</color>
+
 </resources>

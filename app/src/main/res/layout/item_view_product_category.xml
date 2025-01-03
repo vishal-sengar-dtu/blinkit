@@ -14,8 +14,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardElevation="@dimen/_5sdp"
-            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_9sdp"
             app:cardBackgroundColor="@color/home_item_bg">
 
                 <ImageView

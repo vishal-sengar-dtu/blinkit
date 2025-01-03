@@ -1,5 +1,6 @@
 package com.example.blinkit
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,12 +9,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.blinkit.adapter.AdapterCategory
+import com.example.blinkit.adapter.AdapterSkeleton
 import com.example.blinkit.databinding.FragmentHomeBinding
 import com.example.blinkit.databinding.FragmentSplashBinding
+import com.example.blinkit.model.Category
+import com.example.blinkit.viewmodel.HomeViewModel
+import kotlinx.coroutines.launch
+import java.util.ArrayList
 
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
+    private val viewModel : HomeViewModel by viewModels()
+    private lateinit var groceryAdapter : AdapterCategory
+    private lateinit var snacksAdapter : AdapterCategory
+    private lateinit var beautyAdapter : AdapterCategory
+    private lateinit var householdAdapter : AdapterCategory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,20 +34,80 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        Utility.setStatusBarColor(requireActivity(), requireContext(), R.color.home_yellow)
+        Utility.setStatusAndNavigationBarColor(requireActivity(), requireContext(), R.color.home_yellow, R.color.white)
 
         onSearchTextListener()
         onSearchCrossClick()
+        showSkeletonLoader()
         setCategoriesRecyclerView()
 
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setCategoriesRecyclerView() {
-        binding.rvGrocery.adapter = AdapterCategory(Constants.groceryCategoryList)
-        binding.rvSnacks.adapter = AdapterCategory(Constants.snacksCategoryList)
-        binding.rvBeauty.adapter = AdapterCategory(Constants.beautyCategoryList)
-        binding.rvHousehold.adapter = AdapterCategory(Constants.householdCategoryList)
+        viewModel.loadCategoryImageUrlsFromStorage()
+
+        groceryAdapter = AdapterCategory(Constants.groceryCategoryList)
+        snacksAdapter = AdapterCategory(Constants.snacksCategoryList)
+        beautyAdapter = AdapterCategory(Constants.beautyCategoryList)
+        householdAdapter = AdapterCategory(Constants.householdCategoryList)
+
+        binding.apply {
+            rvGrocery.adapter = groceryAdapter
+            rvSnacks.adapter = snacksAdapter
+            rvBeauty.adapter = beautyAdapter
+            rvHousehold.adapter = householdAdapter
+        }
+
+        lifecycleScope.launch {
+            viewModel.isImageUrlLoaded.collect {
+                if(it) {
+                    hideSkeletonLoader()
+
+                    groceryAdapter.notifyDataSetChanged()
+                    snacksAdapter.notifyDataSetChanged()
+                    beautyAdapter.notifyDataSetChanged()
+                    householdAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+
+    }
+
+    private fun showSkeletonLoader() {
+        binding.apply {
+            scrollView.visibility = View.GONE
+
+            skeletonScrollView.visibility = View.VISIBLE
+            shimmerBestSeller.showShimmer(true)
+            shimmer1.showShimmer(true)
+            shimmer2.showShimmer(true)
+            shimmer3.showShimmer(true)
+            shimmer4.showShimmer(true)
+
+            val skeletonList = List(8) { Category(null, null) }
+
+            binding.apply {
+                rvGrocerySkeleton.adapter = AdapterSkeleton(skeletonList)
+                rvSnacksSkeleton.adapter = AdapterSkeleton(skeletonList)
+                rvBeautySkeleton.adapter = AdapterSkeleton(skeletonList)
+                rvHouseholdSkeleton.adapter = AdapterSkeleton(skeletonList)
+            }
+        }
+    }
+
+    private fun hideSkeletonLoader() {
+        binding.apply {
+            skeletonScrollView.visibility = View.GONE
+            shimmerBestSeller.showShimmer(false)
+            shimmer1.showShimmer(false)
+            shimmer2.showShimmer(false)
+            shimmer3.showShimmer(false)
+            shimmer4.showShimmer(false)
+
+            scrollView.visibility = View.VISIBLE
+        }
     }
 
     private fun onSearchCrossClick() {

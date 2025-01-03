@@ -2,6 +2,7 @@
 agp = "8.7.2"
 firebaseBom = "33.7.0"
 firebaseDatabase = "21.0.0"
+firebaseStorage = "21.0.1"
 glide = "4.16.0"
 kotlin = "1.9.24"
 coreKtx = "1.8.0"
@@ -16,6 +17,7 @@ activity = "1.9.3"
 constraintlayout = "2.1.4"
 navigationFragmentKtx = "2.8.4"
 sdpAndroid = "1.0.6"
+shimmer = "0.5.0"
 sspAndroid = "1.0.6"
 annotation = "1.6.0"
 
@@ -30,6 +32,7 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-database = { module = "com.google.firebase:firebase-database", version.ref = "firebaseDatabase" }
+firebase-storage = { module = "com.google.firebase:firebase-storage", version.ref = "firebaseStorage" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -40,6 +43,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 sdp-android = { module = "com.intuit.sdp:sdp-android", version.ref = "sdpAndroid" }
+shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 ssp-android = { module = "com.intuit.ssp:ssp-android", version.ref = "sspAndroid" }
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 

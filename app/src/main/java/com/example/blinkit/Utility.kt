@@ -13,18 +13,14 @@ import androidx.core.content.ContextCompat.getSystemService
 
 object Utility {
 
-    fun setStatusBarColor(activity : Activity, context : Context?, color : Int) {
+    fun setStatusAndNavigationBarColor(activity : Activity, context : Context?, statusColor : Int, navigationColor : Int) {
         if(context != null) {
             activity.window?.apply {
-                val statusBarColors = ContextCompat.getColor(context, color)
+                val statusBarColors = ContextCompat.getColor(context, statusColor)
                 statusBarColor = statusBarColors
-
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                }
             }
             activity.window?.apply {
-                navigationBarColor = ContextCompat.getColor(context, color)
+                navigationBarColor = ContextCompat.getColor(context, navigationColor)
             }
         }
     }

@@ -69,10 +69,14 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation (libs.firebase.database)
+    implementation (libs.firebase.storage)
 
     // lottie animation
     implementation (libs.lottie)
 
     // glide
     implementation (libs.glide)
+
+    // shimmer
+    implementation (libs.shimmer)
 }

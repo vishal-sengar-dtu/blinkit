@@ -10,5 +10,9 @@
         android:bottomRightRadius="16dp" />
 
     <!-- Optional: Define a solid color or make it transparent -->
-    <solid android:color="@color/home_yellow" />
+    <gradient
+        android:angle="90"
+        android:startColor="@color/toolbar_light"
+        android:endColor="@color/toolbar_yellow"
+        android:type="linear" />
 </shape>

@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
             Utility.showKeyboard(binding.etMobileNumber)
         }
 
-        Utility.setStatusBarColor(requireActivity(), requireContext(), R.color.login_light)
+        Utility.setStatusAndNavigationBarColor(requireActivity(), requireContext(), R.color.login_light, R.color.login_light)
         setMobileNumberListener()
         onContinueButtonClick()
         onCrossClick()

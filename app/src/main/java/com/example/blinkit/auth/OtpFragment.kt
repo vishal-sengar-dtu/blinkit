@@ -38,7 +38,7 @@ class OtpFragment : Fragment() {
         binding = FragmentOtpBinding.inflate(layoutInflater)
         otpFields = arrayOf(binding.etOtp1, binding.etOtp2, binding.etOtp3, binding.etOtp4, binding.etOtp5, binding.etOtp6)
 
-        Utility.setStatusBarColor(requireActivity(), requireContext(), R.color.otp_toolbar_bg)
+        Utility.setStatusAndNavigationBarColor(requireActivity(), requireContext(), R.color.otp_toolbar_bg, R.color.otp_toolbar_bg)
         setOtpTextChangeFocusListener()
         handleBackButton()
         getPhoneNumber()
