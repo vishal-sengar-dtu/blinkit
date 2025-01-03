@@ -40,11 +40,11 @@
     <color name="home_yellow">#000000</color>
     <color name="home_border_grey">#211F1F</color>
     <color name="home_text">#E0DFDF</color>
-    <color name="home_item_bg">#93BFBF</color>
+    <color name="home_item_bg">#3C3B3B</color>
 
     //toolbar gradient
     <color name="toolbar_yellow">#000000</color>
-    <color name="toolbar_light">#454141</color>
+    <color name="toolbar_light">#353333</color>
 
     //skeleton loader
     <color name="skeleton_grey">#E0E0E0</color>
