@@ -82,12 +82,12 @@
         android:layout_marginStart="@dimen/_6sdp"
         android:layout_marginTop="@dimen/_8sdp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3"
-        tools:listitem="@layout/skeleton_loader_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_bar_bg"/>
+        app:layout_constraintTop_toBottomOf="@id/search_bar_bg"
+        app:spanCount="3"
+        tools:listitem="@layout/skeleton_loader_item" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_products"
@@ -97,10 +97,10 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_bar_bg"/>
+        app:layout_constraintTop_toBottomOf="@id/search_bar_bg"
+        app:spanCount="3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

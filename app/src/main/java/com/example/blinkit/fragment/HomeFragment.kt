@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
         val bundle = Bundle().apply {
             putString("CATEGORY_NAME", category.title)
         }
-        findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle)
+        findNavController().navigate(R.id.action_homeFragment_to_categoryFragment, bundle)
     }
 
     private fun setCategoriesRecyclerView() {

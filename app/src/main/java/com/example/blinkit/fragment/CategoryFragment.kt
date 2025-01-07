@@ -4,59 +4,66 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.blinkit.R
 import com.example.blinkit.Utility
 import com.example.blinkit.adapter.AdapterSkeleton
 import com.example.blinkit.adapter.ProductAdapter
-import com.example.blinkit.databinding.FragmentSearchBinding
+import com.example.blinkit.databinding.FragmentCategoryBinding
 import com.example.blinkit.viewmodel.UserViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SearchFragment : Fragment() {
-    private lateinit var binding: FragmentSearchBinding
-    private lateinit var productAdapter: ProductAdapter
+class CategoryFragment : Fragment() {
+    private lateinit var binding : FragmentCategoryBinding
     private val viewModel : UserViewModel by viewModels()
+    private lateinit var productAdapter : ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchBinding.inflate(layoutInflater)
+        binding = FragmentCategoryBinding.inflate(layoutInflater)
 
         Utility.setStatusAndNavigationBarColor(
             requireActivity(),
             requireContext(),
-            R.color.search_toolbar_bg,
+            R.color.home_yellow,
             R.color.white
         )
 
-        requestFocusAndShowKeyboard()
+        val category = arguments?.getString("CATEGORY_NAME")
+        binding.materialToolbar.title = category
+        setProductRecyclerView(category!!)
         showSkeletonLoader()
-        setProductRecyclerView()
-        searchProductFilter()
+        onBackButtonClick()
+        onSearchButtonClick()
 
 
         return binding.root
     }
 
-    private fun setProductRecyclerView() {
+    private fun setProductRecyclerView(category : String) {
         productAdapter = ProductAdapter(this)
 
         lifecycleScope.launch {
-            viewModel.fetchAllProducts().collect {
+            viewModel.fetchCategorySpecificProducts(category).collect {
                 productAdapter.differ.submitList(it)
                 productAdapter.originalProductList = it
                 binding.rvProducts.adapter = productAdapter
 
                 hideSkeletonLoader()
+
+                if(it.isEmpty()) {
+                    binding.tvNoProducts.visibility = View.VISIBLE
+                } else {
+                    binding.tvNoProducts.visibility = View.GONE
+                }
             }
         }
     }
@@ -78,45 +85,24 @@ class SearchFragment : Fragment() {
     }
 
 
-    private fun searchProductFilter() {
-        onSearchTextListener()
-        onBackButtonClick()
-        onCrossButtonClick()
-    }
-
-    private fun onSearchTextListener() {
-        binding.etSearchBar.addTextChangedListener( object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.crossBtn.visibility = if(s.toString().isNotEmpty()) View.VISIBLE else View.GONE
-
-                val query = s.toString().trim()
-                productAdapter.getFilter().filter(query)
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-
-        })
-    }
-
     private fun onBackButtonClick() {
-        binding.imgBack.setOnClickListener() {
-            findNavController().navigate(R.id.action_searchFragment_to_homeFragment)
+        binding.materialToolbar.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_categoryFragment_to_homeFragment)
         }
     }
 
-    private fun onCrossButtonClick() {
-        binding.crossBtn.setOnClickListener {
-            binding.etSearchBar.setText("")
-        }
-    }
+    private fun onSearchButtonClick() {
+        binding.materialToolbar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.searchFragment -> {
+                    findNavController().navigate(R.id.action_categoryFragment_to_searchFragment)
+                    return@setOnMenuItemClickListener true
+                }
 
-    private fun requestFocusAndShowKeyboard() {
-        binding.etSearchBar.requestFocus()
-        lifecycleScope.launch {
-            delay(500)
-            Utility.showKeyboard(binding.etSearchBar)
+                else -> {
+                    return@setOnMenuItemClickListener false
+                }
+            }
         }
 
     }

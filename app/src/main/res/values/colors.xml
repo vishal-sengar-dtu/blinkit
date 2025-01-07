@@ -59,4 +59,7 @@
     <color name="time_text">#393A40</color>
     <color name="mrp_text">#3E3B3B</color>
 
+    //categories
+    <color name="text_color_dark">#595959</color>
+
 </resources>

@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class UserViewModel: ViewModel() {
 
-    fun fetchAllProducts(category : String): Flow<List<Product>> = callbackFlow {
+    fun fetchAllProducts(): Flow<List<Product>> = callbackFlow {
         val db = Firebase.getDatabaseInstance().getReference("Admins").child("AllProducts")
 
         val eventListener = object : ValueEventListener {
@@ -20,9 +20,30 @@ class UserViewModel: ViewModel() {
                 val products = ArrayList<Product>()
                 for(obj in snapshot.children) {
                     val product = obj.getValue(Product::class.java)
-                    if(category == "All Products" || category == product?.category) {
-                        products.add(product!!)
-                    }
+                    products.add(product!!)
+                }
+                trySend(products)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+
+        db.addValueEventListener(eventListener)
+
+        awaitClose { db.removeEventListener(eventListener) }
+
+    }
+
+    fun fetchCategorySpecificProducts(category: String) : Flow<List<Product>> = callbackFlow {
+        val db = Firebase.getDatabaseInstance().getReference("Admins").child("ProductCategory").child(category)
+
+        val eventListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val products = ArrayList<Product>()
+                for(obj in snapshot.children) {
+                    val product = obj.getValue(Product::class.java)
+                    products.add(product!!)
                 }
                 trySend(products)
             }

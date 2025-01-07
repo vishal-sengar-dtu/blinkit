@@ -50,6 +50,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
                     android:layout_marginHorizontal="6dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:background="@drawable/home_search_bar_border"
                     android:padding="@dimen/_9sdp"
                     app:layout_collapseMode="pin" >
