@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class UserViewModel: ViewModel() {
 
-    fun fetchAllProducts(): Flow<List<Product>> = callbackFlow {
+    fun fetchAllProducts(category : String): Flow<List<Product>> = callbackFlow {
         val db = Firebase.getDatabaseInstance().getReference("Admins").child("AllProducts")
 
         val eventListener = object : ValueEventListener {
@@ -20,7 +20,9 @@ class UserViewModel: ViewModel() {
                 val products = ArrayList<Product>()
                 for(obj in snapshot.children) {
                     val product = obj.getValue(Product::class.java)
-                    products.add(product!!)
+                    if(category == "All Products" || category == product?.category) {
+                        products.add(product!!)
+                    }
                 }
                 trySend(products)
             }

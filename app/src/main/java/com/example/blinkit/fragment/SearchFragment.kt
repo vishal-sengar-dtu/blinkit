@@ -27,6 +27,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchBinding.inflate(layoutInflater)
+        val categoryName : String = arguments?.getString("CATEGORY_NAME") ?: "All Products"
 
         Utility.setStatusAndNavigationBarColor(
             requireActivity(),
@@ -36,18 +37,18 @@ class SearchFragment : Fragment() {
         )
 
         showSkeletonLoader()
-        setProductRecyclerView()
+        setProductRecyclerView(categoryName)
         searchProductFilter()
 
 
         return binding.root
     }
 
-    private fun setProductRecyclerView() {
+    private fun setProductRecyclerView(category : String) {
         productAdapter = ProductAdapter(this)
 
         lifecycleScope.launch {
-            viewModel.fetchAllProducts().collect {
+            viewModel.fetchAllProducts(category).collect {
                 productAdapter.differ.submitList(it)
                 productAdapter.originalProductList = it
                 binding.rvProducts.adapter = productAdapter

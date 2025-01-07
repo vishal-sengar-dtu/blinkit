@@ -51,17 +51,20 @@ class HomeFragment : Fragment() {
         binding.customEditText.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
+    }
 
-        binding.etSearchBar.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+    private fun onCategoryClick(category : Category) {
+        val bundle = Bundle().apply {
+            putString("CATEGORY_NAME", category.title)
         }
+        findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle)
     }
 
     private fun setCategoriesRecyclerView() {
-        groceryAdapter = AdapterCategory(Constants.groceryCategoryList)
-        snacksAdapter = AdapterCategory(Constants.snacksCategoryList)
-        beautyAdapter = AdapterCategory(Constants.beautyCategoryList)
-        householdAdapter = AdapterCategory(Constants.householdCategoryList)
+        groceryAdapter = AdapterCategory(Constants.groceryCategoryList, ::onCategoryClick)
+        snacksAdapter = AdapterCategory(Constants.snacksCategoryList, ::onCategoryClick)
+        beautyAdapter = AdapterCategory(Constants.beautyCategoryList, ::onCategoryClick)
+        householdAdapter = AdapterCategory(Constants.householdCategoryList, ::onCategoryClick)
 
         binding.apply {
             rvGrocery.adapter = groceryAdapter

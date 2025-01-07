@@ -8,7 +8,8 @@ import com.example.blinkit.databinding.ItemViewProductCategoryBinding
 import com.example.blinkit.model.Category
 
 class AdapterCategory(
-    private val categoryList : Array<Category>
+    private val categoryList : Array<Category>,
+    val onCategoryClick : (Category) -> Unit
 ) : RecyclerView.Adapter<AdapterCategory.CategoryViewHolder>() {
 
     inner class CategoryViewHolder(
@@ -21,6 +22,9 @@ class AdapterCategory(
                     .override(100, 100)
                     .into(this.imgCategory)
                 tvTitle.text = categoryList[position].title
+            }
+            this.binding.root.setOnClickListener {
+                onCategoryClick(categoryList[position])
             }
         }
 

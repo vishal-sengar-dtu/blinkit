@@ -40,7 +40,7 @@
     <color name="home_yellow">#000000</color>
     <color name="home_border_grey">#211F1F</color>
     <color name="home_text">#E0DFDF</color>
-    <color name="home_item_bg">#3C3B3B</color>
+    <color name="home_item_bg">#000000</color>
 
     //toolbar gradient
     <color name="toolbar_yellow">#000000</color>
@@ -51,7 +51,7 @@
 
     //search home
     <color name="search_toolbar_bg">#000000</color>
-    <color name="image_switcher_bg">#424343</color>
+    <color name="image_switcher_bg">#000000</color>
     <color name="quantity_text">#B498E7</color>
     <color name="discount_text">#7081DB</color>
     <color name="time_text">#6F707A</color>
