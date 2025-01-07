@@ -1,4 +1,4 @@
-package com.example.blinkit
+package com.example.blinkit.fragment
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,16 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.blinkit.Constants
+import com.example.blinkit.R
+import com.example.blinkit.Utility
 import com.example.blinkit.adapter.AdapterCategory
 import com.example.blinkit.adapter.AdapterSkeleton
 import com.example.blinkit.databinding.FragmentHomeBinding
 import com.example.blinkit.model.Category
-import com.example.blinkit.viewmodel.HomeViewModel
+import com.example.blinkit.viewmodel.UserViewModel
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
-    private val viewModel : HomeViewModel by viewModels()
+    private val viewModel : UserViewModel by viewModels()
     private lateinit var groceryAdapter : AdapterCategory
     private lateinit var snacksAdapter : AdapterCategory
     private lateinit var beautyAdapter : AdapterCategory
@@ -29,14 +33,28 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        Utility.setStatusAndNavigationBarColor(requireActivity(), requireContext(), R.color.home_yellow, R.color.white)
+        Utility.setStatusAndNavigationBarColor(
+            requireActivity(),
+            requireContext(),
+            R.color.home_yellow,
+            R.color.white
+        )
 
-        onSearchTextListener()
-        onSearchCrossClick()
         showSkeletonLoader()
         setCategoriesRecyclerView()
+        onSearchClick()
 
         return binding.root
+    }
+
+    private fun onSearchClick() {
+        binding.customEditText.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
+
+        binding.etSearchBar.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 
     private fun setCategoriesRecyclerView() {
@@ -67,7 +85,7 @@ class HomeFragment : Fragment() {
             shimmer3.showShimmer(true)
             shimmer4.showShimmer(true)
 
-            val skeletonList = List(8) { Category(null, null) }
+            val skeletonList = List(8) { "" }
 
             binding.apply {
                 rvGrocerySkeleton.adapter = AdapterSkeleton(skeletonList)
@@ -89,29 +107,6 @@ class HomeFragment : Fragment() {
 
             scrollView.visibility = View.VISIBLE
         }
-    }
-
-    private fun onSearchCrossClick() {
-        binding.crossBtn.setOnClickListener {
-            binding.etSearchBar.setText("")
-        }
-    }
-
-    private fun onSearchTextListener() {
-        binding.etSearchBar.addTextChangedListener( object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s.toString().isNotEmpty()) {
-                    binding.crossBtn.visibility = View.VISIBLE
-                } else {
-                    binding.crossBtn.visibility = View.GONE
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-
-        })
     }
 
 }

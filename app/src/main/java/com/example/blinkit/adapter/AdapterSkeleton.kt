@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blinkit.databinding.SkeletonLoaderItemBinding
-import com.example.blinkit.model.Category
+import com.example.blinkit.model.Product
 
-class AdapterSkeleton(
-    private val skeletonList : List<Category>) : RecyclerView.Adapter<AdapterSkeleton.SkeletonViewHolder>() {
+class AdapterSkeleton(private val skeletonList : List<String>) : RecyclerView.Adapter<AdapterSkeleton.SkeletonViewHolder>() {
 
     inner class SkeletonViewHolder(
         private val binding : SkeletonLoaderItemBinding

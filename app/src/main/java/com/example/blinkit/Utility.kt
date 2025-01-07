@@ -63,4 +63,25 @@ object Utility {
         }
     }
 
+    fun generateRandomId(length: Int = 16): String {
+        val chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        return (1..length)
+            .map { chars.random() }
+            .joinToString("")
+    }
+
+    fun discountPrice(price: Int, discount: Int?) : Int {
+        if(discount == null) {
+            return price
+        }
+        return price - (price * discount / 100)
+    }
+
+    fun priceString(price : String) : String{
+        if(price.length > 3) {
+            return "${price.substring(0, price.length - 3)},${price.substring(price.length - 3, price.length)}"
+        }
+        return price
+    }
+
 }

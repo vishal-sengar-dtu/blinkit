@@ -51,4 +51,12 @@
     //skeleton loader
     <color name="skeleton_grey">#E0E0E0</color>
 
+    //search home
+    <color name="search_toolbar_bg">#94A5B3</color>
+    <color name="image_switcher_bg">#F5F5FB</color>
+    <color name="quantity_text">#561BC3</color>
+    <color name="discount_text">#2E48D5</color>
+    <color name="time_text">#393A40</color>
+    <color name="mrp_text">#3E3B3B</color>
+
 </resources>
