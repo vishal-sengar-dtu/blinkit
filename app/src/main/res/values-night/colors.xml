@@ -60,4 +60,7 @@
     //categories
     <color name="text_color_dark">#B1B0B0</color>
 
+    //add to cart bottom view
+    <color name="addToCart_bg">#000000</color>
+
 </resources>

@@ -1,8 +1,6 @@
 package com.example.blinkit.fragment
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +14,12 @@ import com.example.blinkit.adapter.AdapterCategory
 import com.example.blinkit.adapter.AdapterSkeleton
 import com.example.blinkit.databinding.FragmentHomeBinding
 import com.example.blinkit.model.Category
-import com.example.blinkit.viewmodel.UserViewModel
+import com.example.blinkit.viewmodel.HomeViewModel
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
-    private val viewModel : UserViewModel by viewModels()
+    private val viewModel : HomeViewModel by viewModels()
     private lateinit var groceryAdapter : AdapterCategory
     private lateinit var snacksAdapter : AdapterCategory
     private lateinit var beautyAdapter : AdapterCategory

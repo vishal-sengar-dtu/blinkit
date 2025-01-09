@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.blinkit.Firebase
 import com.example.blinkit.R
+import com.example.blinkit.SharedPreference
 import com.example.blinkit.Utility
 import com.example.blinkit.activity.HomeActivity
 import com.example.blinkit.databinding.FragmentOtpBinding
@@ -25,6 +26,7 @@ import kotlinx.coroutines.launch
 
 class OtpFragment : Fragment() {
     private val viewModel : AuthViewModel by viewModels()
+    private lateinit var sharedPref : SharedPreference
     private lateinit var binding : FragmentOtpBinding
     private lateinit var otpFields : Array<EditText>
     private lateinit var phoneNumber : String
@@ -36,6 +38,7 @@ class OtpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOtpBinding.inflate(layoutInflater)
+        sharedPref = SharedPreference.getInstance(requireContext().applicationContext)
         otpFields = arrayOf(binding.etOtp1, binding.etOtp2, binding.etOtp3, binding.etOtp4, binding.etOtp5, binding.etOtp6)
 
         Utility.setStatusAndNavigationBarColor(requireActivity(), requireContext(), R.color.otp_toolbar_bg, R.color.otp_toolbar_bg)
@@ -82,7 +85,7 @@ class OtpFragment : Fragment() {
                 it?.apply {
                     if(it) {
                         showLoginAnimationDialog()
-                        Utility.saveLoginSession(requireContext(), true)
+                        sharedPref.saveLoginSession(true)
                         Utility.hideKeyboard(binding.etOtp1)
                         delay(2100)
                         val homeIntent = Intent(requireContext(), HomeActivity::class.java)

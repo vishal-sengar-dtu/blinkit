@@ -8,32 +8,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.blinkit.R
+import com.example.blinkit.SharedPreference
 import com.example.blinkit.Utility
 import com.example.blinkit.activity.HomeActivity
 import com.example.blinkit.databinding.FragmentSplashBinding
+import kotlinx.coroutines.delay
 
 class SplashFragment : Fragment() {
     private lateinit var binding : FragmentSplashBinding
+    private lateinit var sharedPref : SharedPreference
+
+    companion object {
+        private const val SPLASH_DELAY = 1800L
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSplashBinding.inflate(layoutInflater)
+        sharedPref = SharedPreference.getInstance(requireContext().applicationContext)
 
         Utility.setStatusAndNavigationBarColor(requireActivity(), requireContext(), R.color.splash_yellow, R.color.splash_yellow)
-
         Handler(Looper.getMainLooper()).postDelayed({
-            if(Utility.isUserLoggedIn(requireContext())) {
+            if(sharedPref.isUserLoggedIn()) {
                 val homeIntent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(homeIntent)
                 requireActivity().finish()
             } else {
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment2)
+                if(isAdded) findNavController().navigate(R.id.action_splashFragment_to_loginFragment2)
             }
-        }, 1800)
+        }, SPLASH_DELAY)
 
         return binding.root
     }

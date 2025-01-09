@@ -10,7 +10,7 @@ data class Product(
     var discount : Int? = null,
     var category : String? = null,
     var type : String? = null,
-    var itemCount : Int? = null,
+    var itemCount : Int = 0,
     var adminUid : String? = null,
     var productImageUrl : ArrayList<String?>? = null
 )

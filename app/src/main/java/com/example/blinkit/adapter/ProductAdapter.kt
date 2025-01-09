@@ -20,7 +20,10 @@ import com.example.blinkit.databinding.ProuctItemViewBinding
 import com.example.blinkit.model.Product
 
 class ProductAdapter(
-    private val fragment : Fragment
+    private val fragment : Fragment,
+    val onAddButtonClick : (Product, ProuctItemViewBinding) -> Unit,
+    val onIncrementButtonClick : (Product, ProuctItemViewBinding) -> Unit,
+    val onDecrementButtonClick : (Product, ProuctItemViewBinding) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(), Filterable {
 
     val differ = AsyncListDiffer(this, object : DiffUtil.ItemCallback<Product>() {
@@ -49,41 +52,60 @@ class ProductAdapter(
     }
 
     inner class ProductViewHolder(val binding : ProuctItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
-        private var images : ArrayList<String?>? = null
-
         fun bind(position: Int) {
+            val product = differ.currentList[position]
+
             binding.apply {
-                val quantity = "${differ.currentList[position].quantity} ${differ.currentList[position].unit}"
+                if(product.itemCount == 0) {
+                    btnAdd.visibility = View.VISIBLE
+                    btnQuantity.visibility = View.GONE
+                } else {
+                    btnAdd.visibility = View.GONE
+                    btnQuantity.visibility = View.VISIBLE
+                    tvProductQuantity.text = product.itemCount.toString()
+                }
+
+
+                val quantity = "${product.quantity} ${product.unit}"
                 tvQuantity.text = quantity
-                tvName.text = differ.currentList[position].title
-                if(differ.currentList[position].discount == null || differ.currentList[position].discount == 0) {
+
+                tvName.text = product.title
+
+                if(product.discount == null || product.discount == 0) {
                     tvDiscount.visibility = View.GONE
                     tvMrp.visibility = View.GONE
                 } else {
                     tvDiscount.visibility = View.VISIBLE
                     tvMrp.visibility = View.VISIBLE
-                    tvDiscount.text = fragment.getString(R.string.discount_text, differ.currentList[position].discount)
+                    tvDiscount.text = fragment.getString(R.string.discount_text, product.discount)
                     val builder = SpannableStringBuilder()
                     builder.append("MRP ")
                     val start = builder.length
-                    builder.append("₹${Utility.priceString(differ.currentList[position].price.toString())}")
+                    builder.append("₹${Utility.priceString(product.price.toString())}")
                         .setSpan(StrikethroughSpan(), start, builder.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                     tvMrp.text = builder
                 }
-                tvPrice.text = fragment.getString(R.string.price_text, Utility.priceString(Utility.discountPrice(differ.currentList[position].price!!, differ.currentList[position].discount).toString()))
 
-                images = differ.currentList[position].productImageUrl
+                tvPrice.text = fragment.getString(R.string.price_text, Utility.priceString(Utility.discountPrice(product.price!!, product.discount).toString()))
 
                 // Set the initial image
                 Glide.with(imageSwitcher)
-                    .load(images!![0])
+                    .load(product.productImageUrl!![0])
                     .override(100, 100)
                     .into(imageView)
 
-                // Edit Button Click Listener
-//                btnAdd.setOnClickListener {
-//                    onAddButtonClick(differ.currentList[position])
-//                }
+                btnAdd.setOnClickListener {
+                    onAddButtonClick(product, binding)
+
+                    btnPlus.setOnClickListener {
+                        onIncrementButtonClick(product, binding)
+                    }
+
+                    btnMinus.setOnClickListener {
+                        onDecrementButtonClick(product, binding)
+                    }
+
+                }
             }
 
         }

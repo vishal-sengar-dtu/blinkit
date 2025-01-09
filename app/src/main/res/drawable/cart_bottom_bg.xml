@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Define the corner radii for rounded corners -->
+    <corners
+        android:topLeftRadius="@dimen/_12sdp"
+        android:topRightRadius="@dimen/_12sdp" />
+
+    <!-- Optional: Define a solid color or make it transparent -->
+    <solid
+        android:color="@color/addToCart_bg"/>
+</shape>
