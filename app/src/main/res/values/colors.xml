@@ -63,6 +63,7 @@
     <color name="text_color_dark">#595959</color>
 
     //add to cart bottom view
-    <color name="addToCart_bg">#B3B1B1</color>
+    <color name="addToCart_bg">#EDEDEB</color>
+    <color name="white_cart_text">#FFFFFF</color>
 
 </resources>

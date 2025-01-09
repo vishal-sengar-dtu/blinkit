@@ -2,6 +2,7 @@ package com.example.blinkit.activity
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,6 +31,16 @@ class HomeActivity : AppCompatActivity(), CartListener {
     override fun updateCartUI(itemCount : Int) {
         binding.tvCount.text = itemCount.toString()
         binding.llCartBottomView.visibility = if(itemCount > 0) View.VISIBLE else View.GONE
+    }
+
+    override fun cartAnimation(isPopUp: Boolean) {
+        val popUp = AnimationUtils.loadAnimation(baseContext, R.anim.pop_up_from_bottom)
+        val popDown = AnimationUtils.loadAnimation(baseContext, R.anim.pop_up_from_bottom)
+        if(isPopUp) {
+            binding.llCartBottomView.startAnimation(popUp)
+        } else {
+            binding.llCartBottomView.startAnimation(popDown)
+        }
     }
 
 

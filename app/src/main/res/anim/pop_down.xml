@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/decelerate_cubic">
+
+    <!-- Move from current position to below -->
+    <translate
+        android:fromYDelta="0%"
+        android:toYDelta="100%"
+        android:duration="300" />
+
+    <!-- Optional: Fade out the view -->
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0"
+        android:duration="300" />
+</set>

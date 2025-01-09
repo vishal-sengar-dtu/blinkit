@@ -41,4 +41,6 @@
     <string name="price_text">₹%1$s</string>
     <string name="mrp_text">MRP ₹%1$s</string>
     <string name="no_products_for_this_category">No Products for this Category</string>
+    <string name="next">Next</string>
+    <string name="place_order">Place Order</string>
 </resources>

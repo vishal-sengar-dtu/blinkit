@@ -47,6 +47,9 @@ class SearchFragment : Fragment() {
         showSkeletonLoader()
         setProductRecyclerView()
         searchProductFilter()
+        if(getContext() is CartListener) {
+
+        }
 
         return binding.root
     }
