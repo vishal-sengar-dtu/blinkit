@@ -15,11 +15,15 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 
 class HomeViewModel: ViewModel() {
-    private val _cartItemCount = MutableLiveData<Int>(0)
+    private val _cartItemCount = MutableLiveData(0)
     val cartItemCount : LiveData<Int> get() = _cartItemCount
 
     private val _cartItemList = MutableStateFlow<List<Product>>(emptyList())
     val cartItemList: StateFlow<List<Product>> get() = _cartItemList
+
+    fun setCartItemCount(itemCount : Int) {
+        _cartItemCount.value = itemCount
+    }
 
     fun incrementCartItemCount() {
         _cartItemCount.value = (_cartItemCount.value ?: 0) + 1

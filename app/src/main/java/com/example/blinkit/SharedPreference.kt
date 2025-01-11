@@ -18,6 +18,18 @@ class SharedPreference private constructor(private val sharedPref: SharedPrefere
         return sharedPref.getBoolean("isLoggedIn", false)
     }
 
+    // Count of items added in cart
+    fun saveCartItemCount(itemCount : Int) {
+        with(sharedPref.edit()) {
+            putInt("cartItemCount", itemCount)
+            apply()
+        }
+    }
+
+    fun getCartItemCount() : Int {
+        return sharedPref.getInt("cartItemCount", 0)
+    }
+
     companion object {
         @Volatile
         private var instance: SharedPreference? = null
