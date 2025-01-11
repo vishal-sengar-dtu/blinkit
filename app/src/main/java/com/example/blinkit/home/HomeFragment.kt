@@ -1,4 +1,4 @@
-package com.example.blinkit.fragment
+package com.example.blinkit.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.blinkit.Constants
+import com.example.blinkit.utils.Constants
 import com.example.blinkit.R
-import com.example.blinkit.Utility
+import com.example.blinkit.utils.Utility
 import com.example.blinkit.adapter.AdapterCategory
 import com.example.blinkit.adapter.AdapterSkeleton
 import com.example.blinkit.databinding.FragmentHomeBinding

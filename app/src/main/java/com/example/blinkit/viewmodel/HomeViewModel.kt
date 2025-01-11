@@ -3,18 +3,17 @@ package com.example.blinkit.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.blinkit.Firebase
+import androidx.lifecycle.viewModelScope
+import com.example.blinkit.repository.HomeRepository
 import com.example.blinkit.model.Product
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.channels.awaitClose
+import com.example.blinkit.roomdb.CartProduct
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.launch
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel(private val repository: HomeRepository): ViewModel() {
+
     private val _cartItemCount = MutableLiveData(0)
     val cartItemCount : LiveData<Int> get() = _cartItemCount
 
@@ -43,50 +42,23 @@ class HomeViewModel: ViewModel() {
         _cartItemList.value -= product
     }
 
-    fun fetchAllProducts(): Flow<List<Product>> = callbackFlow {
-        val db = Firebase.getDatabaseInstance().getReference("Admins").child("AllProducts")
+    // Database Interactions
+//    fun insertCartProduct(product : CartProduct) {
+//        viewModelScope.launch {
+//            repository.insertCartProduct(product)
+//        }
+//    }
+//
+//    fun updateCartProduct(product : CartProduct) {
+//        viewModelScope.launch {
+//            repository.updateCartProduct(product)
+//        }
+//    }
 
-        val eventListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val products = ArrayList<Product>()
-                for(obj in snapshot.children) {
-                    val product = obj.getValue(Product::class.java)
-                    products.add(product!!)
-                }
-                trySend(products)
-            }
+    // Use repository to fetch all products
+    fun fetchAllProducts(): Flow<List<Product>> = repository.fetchAllProducts()
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-        }
-
-        db.addValueEventListener(eventListener)
-
-        awaitClose { db.removeEventListener(eventListener) }
-
-    }
-
-    fun fetchCategorySpecificProducts(category: String) : Flow<List<Product>> = callbackFlow {
-        val db = Firebase.getDatabaseInstance().getReference("Admins").child("ProductCategory").child(category)
-
-        val eventListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val products = ArrayList<Product>()
-                for(obj in snapshot.children) {
-                    val product = obj.getValue(Product::class.java)
-                    products.add(product!!)
-                }
-                trySend(products)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        }
-
-        db.addValueEventListener(eventListener)
-
-        awaitClose { db.removeEventListener(eventListener) }
-
-    }
+    // Use repository to fetch category-specific products
+    fun fetchCategorySpecificProducts(category: String): Flow<List<Product>> = repository.fetchCategorySpecificProducts(category)
 
 }

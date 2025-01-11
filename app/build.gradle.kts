@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
     id("com.google.gms.google-services")
 }
 
@@ -71,6 +72,11 @@ dependencies {
     implementation (libs.firebase.database)
     implementation (libs.firebase.storage)
 
+    // Room Database
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0") // Use kapt for annotation processing
+    implementation("androidx.room:room-ktx:2.5.0")
+
     // lottie animation
     implementation (libs.lottie)
 
@@ -80,6 +86,4 @@ dependencies {
     // shimmer
     implementation (libs.shimmer)
 
-    // datastore
-    implementation (libs.androidx.datastore.preferences)
 }

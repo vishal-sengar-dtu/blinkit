@@ -1,4 +1,4 @@
-package com.example.blinkit.fragment
+package com.example.blinkit.home
 
 import android.content.Context
 import android.os.Bundle
@@ -9,19 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.blinkit.CartListener
 import com.example.blinkit.R
-import com.example.blinkit.Utility
+import com.example.blinkit.utils.Utility
 import com.example.blinkit.adapter.AdapterSkeleton
 import com.example.blinkit.adapter.ProductAdapter
 import com.example.blinkit.databinding.FragmentSearchBinding
 import com.example.blinkit.databinding.ProuctItemViewBinding
 import com.example.blinkit.model.Product
 import com.example.blinkit.viewmodel.HomeViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {

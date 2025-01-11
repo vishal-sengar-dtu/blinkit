@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.blinkit.ProductFilter
+import com.example.blinkit.utils.ProductFilter
 import com.example.blinkit.R
-import com.example.blinkit.Utility
+import com.example.blinkit.utils.Utility
 import com.example.blinkit.databinding.ProuctItemViewBinding
 import com.example.blinkit.model.Product
 

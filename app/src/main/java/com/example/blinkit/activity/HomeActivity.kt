@@ -3,28 +3,30 @@ package com.example.blinkit.activity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.blinkit.BringItApplication
 import com.example.blinkit.CartListener
 import com.example.blinkit.Direction
+import com.example.blinkit.repository.HomeRepository
 import com.example.blinkit.R
 import com.example.blinkit.SharedPreference
 import com.example.blinkit.databinding.ActivityHomeBinding
 import com.example.blinkit.viewmodel.HomeViewModel
+import com.example.blinkit.viewmodel.HomeViewModelFactory
 
 class HomeActivity : AppCompatActivity(), CartListener {
     private lateinit var binding : ActivityHomeBinding
     private lateinit var viewModel: HomeViewModel
+    private lateinit var homeRepository : HomeRepository
     private lateinit var sharedPref : SharedPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        sharedPref = SharedPreference.getInstance(applicationContext)
+        homeRepository = HomeRepository((application as BringItApplication).getCartProductDao())
+        viewModel = ViewModelProvider(this, HomeViewModelFactory(homeRepository))[HomeViewModel::class.java]
+        sharedPref = (application as BringItApplication).sharedPreference
         setContentView(binding.root)
 
         val cartItemCount = sharedPref.getCartItemCount()

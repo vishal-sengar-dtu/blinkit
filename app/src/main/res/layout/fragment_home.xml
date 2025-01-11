@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/home_light"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.HomeFragment">
+    tools:context=".home.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"

@@ -1,5 +1,6 @@
-package com.example.blinkit
+package com.example.blinkit.utils
 
+import com.example.blinkit.R
 import com.example.blinkit.model.Category
 
 object Constants {

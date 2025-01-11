@@ -1,5 +1,6 @@
 package com.example.blinkit.auth
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -8,14 +9,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.blinkit.BringItApplication
 import com.example.blinkit.R
 import com.example.blinkit.SharedPreference
-import com.example.blinkit.Utility
+import com.example.blinkit.utils.Utility
 import com.example.blinkit.activity.HomeActivity
 import com.example.blinkit.databinding.FragmentSplashBinding
-import kotlinx.coroutines.delay
 
 class SplashFragment : Fragment() {
     private lateinit var binding : FragmentSplashBinding
@@ -30,7 +30,7 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSplashBinding.inflate(layoutInflater)
-        sharedPref = SharedPreference.getInstance(requireContext().applicationContext)
+        sharedPref = (requireActivity().application as BringItApplication).sharedPreference
 
         Utility.setStatusAndNavigationBarColor(requireActivity(), requireContext(), R.color.splash_yellow, R.color.splash_yellow)
         Handler(Looper.getMainLooper()).postDelayed({

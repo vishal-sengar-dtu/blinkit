@@ -1,6 +1,7 @@
 package com.example.blinkit.auth
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -13,10 +14,10 @@ import android.widget.EditText
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.blinkit.Firebase
+import com.example.blinkit.BringItApplication
 import com.example.blinkit.R
 import com.example.blinkit.SharedPreference
-import com.example.blinkit.Utility
+import com.example.blinkit.utils.Utility
 import com.example.blinkit.activity.HomeActivity
 import com.example.blinkit.databinding.FragmentOtpBinding
 import com.example.blinkit.model.User
@@ -26,19 +27,18 @@ import kotlinx.coroutines.launch
 
 class OtpFragment : Fragment() {
     private val viewModel : AuthViewModel by viewModels()
-    private lateinit var sharedPref : SharedPreference
     private lateinit var binding : FragmentOtpBinding
     private lateinit var otpFields : Array<EditText>
     private lateinit var phoneNumber : String
+    private lateinit var sharedPref : SharedPreference
     private val countryCode = "+91"
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOtpBinding.inflate(layoutInflater)
-        sharedPref = SharedPreference.getInstance(requireContext().applicationContext)
+        sharedPref = (requireActivity().application as BringItApplication).sharedPreference
         otpFields = arrayOf(binding.etOtp1, binding.etOtp2, binding.etOtp3, binding.etOtp4, binding.etOtp5, binding.etOtp6)
 
         Utility.setStatusAndNavigationBarColor(requireActivity(), requireContext(), R.color.otp_toolbar_bg, R.color.otp_toolbar_bg)
