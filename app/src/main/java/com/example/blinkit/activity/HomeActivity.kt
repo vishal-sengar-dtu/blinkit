@@ -5,6 +5,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.blinkit.BringItApplication
 import com.example.blinkit.CartListener
 import com.example.blinkit.Direction
@@ -14,6 +15,7 @@ import com.example.blinkit.SharedPreference
 import com.example.blinkit.databinding.ActivityHomeBinding
 import com.example.blinkit.viewmodel.HomeViewModel
 import com.example.blinkit.viewmodel.HomeViewModelFactory
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity(), CartListener {
     private lateinit var binding : ActivityHomeBinding
@@ -29,16 +31,24 @@ class HomeActivity : AppCompatActivity(), CartListener {
         sharedPref = (application as BringItApplication).sharedPreference
         setContentView(binding.root)
 
-        val cartItemCount = sharedPref.getCartItemCount()
-        viewModel.setCartItemCount(cartItemCount)
+        handleExistingCartProducts()
 
-        viewModel.cartItemCount.observe(this) { count ->
-            updateCartUI(count)
+        lifecycleScope.launch {
+            viewModel.cartItemCount.collect { itemCount ->
+                updateCartUI(itemCount)
+            }
+
+            viewModel.cartItemList.collect { itemList ->
+
+            }
+
         }
+
     }
 
-    override fun onStart() {
-        super.onStart()
+    private fun handleExistingCartProducts() {
+        val cartItemCount = sharedPref.getCartItemCount()
+        viewModel.setCartItemCount(cartItemCount)
     }
 
     override fun updateCartUI(itemCount : Int) {

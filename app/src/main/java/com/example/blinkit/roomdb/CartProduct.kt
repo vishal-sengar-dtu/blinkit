@@ -11,11 +11,10 @@ data class CartProduct (
     var quantity : Int?,
     var unit : String?,
     var price : Int?,
-    var stock : Int?,
     var discount : Int?,
     var category : String?,
     var type : String?,
     var itemCount : Int = 0,
-    var adminUid : String?,
+    var userId : String?,
     var productImageUrl : String?
 )

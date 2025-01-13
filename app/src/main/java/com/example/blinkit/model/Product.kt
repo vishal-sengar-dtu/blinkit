@@ -1,5 +1,25 @@
 package com.example.blinkit.model
 
+import com.example.blinkit.roomdb.CartProduct
+import com.example.blinkit.utils.Utility
+
+fun Product.toCartProduct() : CartProduct {
+    return CartProduct(
+        id = this.id ?: Utility.generateRandomId(),
+        title = this.title,
+        quantity = this.quantity,
+        unit = this.unit,
+        price = this.price,
+        discount = this.discount,
+        category = this.category,
+        type = this.type,
+        itemCount = this.itemCount,
+        userId = this.userId,
+        productImageUrl = this.productImageUrl?.get(0)
+    )
+
+}
+
 data class Product(
     var id : String? = null,
     var title : String? = null,
@@ -11,6 +31,6 @@ data class Product(
     var category : String? = null,
     var type : String? = null,
     var itemCount : Int = 0,
-    var adminUid : String? = null,
+    var userId : String? = null,
     var productImageUrl : ArrayList<String?>? = null
 )

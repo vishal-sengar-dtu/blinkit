@@ -44,7 +44,7 @@
 
     //toolbar gradient
     <color name="toolbar_yellow">#000000</color>
-    <color name="toolbar_light">#353333</color>
+    <color name="toolbar_light">#434141</color>
 
     //skeleton loader
     <color name="skeleton_grey">#E0E0E0</color>
@@ -61,7 +61,7 @@
     <color name="text_color_dark">#B1B0B0</color>
 
     //add to cart bottom view
-    <color name="addToCart_bg">#EDEDEB</color>
+    <color name="addToCart_bg">#4D4B4B</color>
     <color name="white_cart_text">#FFFFFF</color>
 
 </resources>

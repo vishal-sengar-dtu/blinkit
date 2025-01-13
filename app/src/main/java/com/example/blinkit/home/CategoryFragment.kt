@@ -53,27 +53,28 @@ class CategoryFragment : Fragment() {
             btnAdd.visibility = View.GONE
             btnQuantity.visibility = View.VISIBLE
             onIncrementButtonClick(product, binding)
-            viewModel.addProductToCart(product)
         }
     }
 
     private fun onIncrementButtonClick(product: Product, binding: ProuctItemViewBinding) {
-        val currentItemCount = binding.tvProductQuantity.text.toString().toIntOrNull() ?: 0
-        binding.tvProductQuantity.text = (currentItemCount + 1).toString()
-
+        var currentItemCount = binding.tvProductQuantity.text.toString().toIntOrNull() ?: 0
+        product.itemCount = ++currentItemCount
+        binding.tvProductQuantity.text = currentItemCount.toString()
+        viewModel.addProductToCart(product)
         viewModel.incrementCartItemCount()
     }
 
     private fun onDecrementButtonClick(product: Product, binding: ProuctItemViewBinding) {
-        val currentItemCount = binding.tvProductQuantity.text.toString().toInt()
+        var currentItemCount = binding.tvProductQuantity.text.toString().toInt()
         if(currentItemCount == 1) {
             binding.apply {
                 btnAdd.visibility = View.VISIBLE
                 btnQuantity.visibility = View.GONE
-                viewModel.removeProductFromCart(product)
             }
         }
-        binding.tvProductQuantity.text = (currentItemCount - 1).toString()
+        product.itemCount = --currentItemCount
+        binding.tvProductQuantity.text = currentItemCount.toString()
+        viewModel.removeProductFromCart(product)
         viewModel.decrementCartItemCount()
     }
 

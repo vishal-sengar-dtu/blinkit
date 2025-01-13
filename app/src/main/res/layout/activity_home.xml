@@ -76,8 +76,8 @@
 
             <ImageView
                 android:id="@+id/img_arrow_up"
-                android:layout_width="@dimen/_8sdp"
-                android:layout_height="@dimen/_8sdp"
+                android:layout_width="@dimen/_7sdp"
+                android:layout_height="@dimen/_7sdp"
                 android:src="@drawable/arrow_up" />
 
 

@@ -29,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -73,9 +73,9 @@ dependencies {
     implementation (libs.firebase.storage)
 
     // Room Database
-    implementation("androidx.room:room-runtime:2.5.0")
-    kapt("androidx.room:room-compiler:2.5.0") // Use kapt for annotation processing
-    implementation("androidx.room:room-ktx:2.5.0")
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler) // Use kapt for annotation processing
+    implementation(libs.androidx.room.ktx)
 
     // lottie animation
     implementation (libs.lottie)

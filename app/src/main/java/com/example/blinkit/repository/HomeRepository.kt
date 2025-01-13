@@ -7,9 +7,11 @@ import com.example.blinkit.roomdb.CartProductDao
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.withContext
 
 class HomeRepository(private val cartProductDao: CartProductDao) {
 
@@ -19,13 +21,23 @@ class HomeRepository(private val cartProductDao: CartProductDao) {
         const val PRODUCT_CATEGORY : String = "ProductCategory"
     }
 
-//    suspend fun insertCartProduct(product: CartProduct) {
-//        cartProductDao.insertCartProduct(product)
-//    }
-//
-//    suspend fun updateCartProduct(product: CartProduct) {
-//        cartProductDao.updateCartProduct(product)
-//    }
+    suspend fun insertCartProduct(product : CartProduct) {
+        withContext(Dispatchers.IO) {
+            cartProductDao.insertCartProduct(product)
+        }
+    }
+
+    suspend fun updateCartProduct(product : CartProduct) {
+        withContext(Dispatchers.IO) {
+            cartProductDao.updateCartProduct(product)
+        }
+    }
+
+    suspend fun deleteCartProduct(product : CartProduct) {
+        withContext(Dispatchers.IO) {
+            cartProductDao.deleteCartProduct(product)
+        }
+    }
 
     fun fetchAllProducts(): Flow<List<Product>> = callbackFlow {
         val db = Firebase.getDatabaseInstance().getReference(ADMIN_PATH).child(ALL_PRODUCTS)

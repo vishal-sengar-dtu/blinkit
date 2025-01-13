@@ -57,7 +57,6 @@ class SearchFragment : Fragment() {
             btnAdd.visibility = View.GONE
             btnQuantity.visibility = View.VISIBLE
             onIncrementButtonClick(product, binding)
-            viewModel.addProductToCart(product)
         }
     }
 
@@ -65,6 +64,7 @@ class SearchFragment : Fragment() {
         var currentItemCount = binding.tvProductQuantity.text.toString().toIntOrNull() ?: 0
         product.itemCount = ++currentItemCount
         binding.tvProductQuantity.text = currentItemCount.toString()
+        viewModel.addProductToCart(product)
         viewModel.incrementCartItemCount()
     }
 
@@ -74,11 +74,11 @@ class SearchFragment : Fragment() {
             binding.apply {
                 btnAdd.visibility = View.VISIBLE
                 btnQuantity.visibility = View.GONE
-                viewModel.removeProductFromCart(product)
             }
         }
         product.itemCount = --currentItemCount
         binding.tvProductQuantity.text = currentItemCount.toString()
+        viewModel.removeProductFromCart(product)
         viewModel.decrementCartItemCount()
     }
 
