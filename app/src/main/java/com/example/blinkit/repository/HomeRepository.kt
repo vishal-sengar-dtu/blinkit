@@ -22,21 +22,19 @@ class HomeRepository(private val cartProductDao: CartProductDao) {
     }
 
     suspend fun insertCartProduct(product : CartProduct) {
-        withContext(Dispatchers.IO) {
-            cartProductDao.insertCartProduct(product)
-        }
+        cartProductDao.insertCartProduct(product)
     }
 
     suspend fun updateCartProduct(product : CartProduct) {
-        withContext(Dispatchers.IO) {
-            cartProductDao.updateCartProduct(product)
-        }
+        cartProductDao.updateCartProduct(product)
     }
 
     suspend fun deleteCartProduct(product : CartProduct) {
-        withContext(Dispatchers.IO) {
-            cartProductDao.deleteCartProduct(product)
-        }
+        cartProductDao.deleteCartProduct(product)
+    }
+
+    suspend fun getAllCartProducts() : List<CartProduct> {
+        return cartProductDao.getAllCartProducts()
     }
 
     fun fetchAllProducts(): Flow<List<Product>> = callbackFlow {

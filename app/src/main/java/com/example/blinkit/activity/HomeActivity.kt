@@ -13,6 +13,7 @@ import com.example.blinkit.repository.HomeRepository
 import com.example.blinkit.R
 import com.example.blinkit.SharedPreference
 import com.example.blinkit.databinding.ActivityHomeBinding
+import com.example.blinkit.roomdb.CartProduct
 import com.example.blinkit.viewmodel.HomeViewModel
 import com.example.blinkit.viewmodel.HomeViewModelFactory
 import kotlinx.coroutines.launch
@@ -37,18 +38,26 @@ class HomeActivity : AppCompatActivity(), CartListener {
             viewModel.cartItemCount.collect { itemCount ->
                 updateCartUI(itemCount)
             }
+        }
 
+        lifecycleScope.launch {
             viewModel.cartItemList.collect { itemList ->
-
+                setCartBottomSheet(itemList)
             }
-
         }
 
     }
 
     private fun handleExistingCartProducts() {
         val cartItemCount = sharedPref.getCartItemCount()
+        viewModel.getAllCartProducts()
         viewModel.setCartItemCount(cartItemCount)
+    }
+
+    override fun setCartBottomSheet(cartList: List<CartProduct>) {
+        binding.llCartDetails.setOnClickListener {
+
+        }
     }
 
     override fun updateCartUI(itemCount : Int) {

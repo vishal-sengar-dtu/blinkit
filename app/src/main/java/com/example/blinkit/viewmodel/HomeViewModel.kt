@@ -83,6 +83,13 @@ class HomeViewModel(private val repository: HomeRepository): ViewModel() {
         }
     }
 
+    fun getAllCartProducts() {
+        viewModelScope.launch {
+            val products = repository.getAllCartProducts()
+            _cartItemList.value = products
+        }
+    }
+
     // Use repository to fetch all products
     fun fetchAllProducts(): Flow<List<Product>> = repository.fetchAllProducts()
 
